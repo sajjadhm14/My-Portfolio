@@ -44,7 +44,15 @@
                 <li class="nav-item">
                   <a href="{{route('all.services')}}" class="nav-link">All Services</a>
                 </li>
+
+               
               </ul>
+               <li class="nav-item">
+                  <a href="{{route('my.experience')}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">My Experience</span>
+                  </a>
+                </li>
             </div>
           </li>
 
