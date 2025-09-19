@@ -42,4 +42,19 @@ class ServicesController extends Controller
         $service = Service::findOrFail($id);
         return view('backend.services.edit_service' , compact('service'));
     }
+    public function updateService(Request $request)
+    {
+        $service_id = $request->service_id;
+        $service = Service::findOrFail($service_id);
+        $service->service_title = Str::replace('/', '-',$request->service_title);
+        $service->service_description = $request->service_description;
+        $service->updated_at = Carbon::now();
+        $service->save();
+
+        $notification = [
+            'message' => 'Service Updated Successfully!',
+            'alert-type' => 'info',
+        ];
+        return redirect()->route('all.services')->with($notification);
+    }
 }
