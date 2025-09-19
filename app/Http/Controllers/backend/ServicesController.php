@@ -57,4 +57,14 @@ class ServicesController extends Controller
         ];
         return redirect()->route('all.services')->with($notification);
     }
+
+    public function deleteService($id)
+    {
+        Service::findOrFail($id)->delete();
+             $notification = [
+            'message' => 'Service Deleted Successfully!',
+            'alert-type' => 'info',
+        ];
+        return redirect()->back()->with($notification);
+    }
 }
