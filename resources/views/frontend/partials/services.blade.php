@@ -13,7 +13,7 @@
             </div>
 
             @php
-                $services = App\Models\Service::latest()->get();
+                $services = App\Models\Service::latest()->limit(4)->get();
             @endphp
 
             <div class="row">
