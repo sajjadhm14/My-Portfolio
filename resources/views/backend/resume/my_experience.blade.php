@@ -35,7 +35,7 @@
                             <td>{{$experience->from_year}}</td>
                             <td>{{$experience->to_year}}</td>
                             <td>
-                                <a href="{{route('edit.service', [$experience->id])}}" type="button" class= "btn btn-inverse-light" style="margin-right:10px ">Edit</a>
+                                <a href="#" id="{{$experience->id}}"  data-bs-toggle="modal" data-bs-target="#EditExperienceModal" type="button" class= "btn btn-inverse-light editExp" style="margin-right:10px ">Edit</a>
                                 <a href="{{route('delete.service', [$experience->id])}}" type="button" class= "btn btn-inverse-danger">Delete</a>
                             </td>
                         </tr>
@@ -51,7 +51,7 @@
 					</div>
 				</div>
         {{-- add experience model --}}
-         <div class="modal fade" id="varyingModal" tabindex="-1" aria-labelledby="varyingModalLabel" aria-hidden="true">
+        <div class="modal fade" id="varyingModal" tabindex="-1" aria-labelledby="varyingModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -64,21 +64,21 @@
                         <input type="hidden" name="resume_cat" value="experience">
                         <div class="mb-3">
                           <label for="title" class="form-label">Title</label>
-                          <input type="text" class="form-control" name = "resume_title" placeholder="Lead Developer" required>
+                          <input type="text" class="form-control" name = "resume_title" placeholder="Title"  required>
                         </div>
 
                         <div class="mb-3">
                           <label for="organization" class="form-label">Organization</label>
-                          <input type="text" class="form-control" name = "institution" placeholder="London" required>
+                          <input type="text" class="form-control" name = "institution" placeholder="Institution" required>
                         </div>
 
                         <div class="mb-3">
                           <label for="from" class="form-label">From Year</label>
-                          <input type="text" class="form-control" name = "from_year" placeholder="2022" required>
+                          <input type="text" class="form-control" name = "from_year" placeholder="From Year" required>
                         </div>
                         <div class="mb-3">
                           <label for="to" class="form-label">To Year</label>
-                          <input type="text" class="form-control" name = "to_year" placeholder="present" required>
+                          <input type="text" class="form-control" name = "to_year" placeholder="To Year"  required>
                         </div>
 
                          <div class="modal-footer">
@@ -90,5 +90,69 @@
                    
                   </div>
                 </div>
-              </div>
+        </div>
+        {{-- edit experience model --}}
+        <div class="modal fade" id="EditExperienceModal" tabindex="-1" aria-labelledby="varyingModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="varyingModalLabel">Edit Experience </h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="POST" action="{{route('update.experience')}} ">
+                        @csrf
+                        <input type="hidden" name="resume_cat" value="experience">
+                        <input type="hidden" name="exp_id" id="exp_id">
+                        <div class="mb-3">
+                          <label for="title" class="form-label">Title</label>
+                          <input type="text" class="form-control" name = "resume_title" id="resume_title" >
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="organization" class="form-label">Organization</label>
+                          <input type="text" class="form-control" name = "institution" id="institution" >
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="from" class="form-label">From Year</label>
+                          <input type="text" class="form-control" name = "from_year" id="from_year" >
+                        </div>
+                        <div class="mb-3">
+                          <label for="to" class="form-label">To Year</label>
+                          <input type="text" class="form-control" name = "to_year" id="to_year" >
+                        </div>
+
+                         <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="sub,it" class="btn btn-primary">Edit Experience</button>
+                         </div>
+                      </form>
+                    </div>
+                   
+                  </div>
+                </div>
+        </div>
+
+        <script>
+          $(document).on('click' , '.editExp' , function(e){
+            e.preventDefault();
+            let id = $(this).attr('id');
+
+
+            // send edit exp ajax request
+            $.ajax({
+              url:'edit-experience/'+id,
+              method:'GET',
+              dataType:'Json',
+              success : function(result){
+                $('#resume_title').val(result.resume_title);
+                $('#institution').val(result.institution);
+                $('#from_year').val(result.from_year);
+                $('#to_year').val(result.to_year);
+                $('#exp_id').val(result.id);
+              }
+            });
+          });
+        </script>
 @endsection
