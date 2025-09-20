@@ -80,4 +80,10 @@ class ResumeController extends Controller
         ];
         return redirect()->back()->with($notification);
     }
+
+    public function myEducation()
+    {
+        $educations =Resume::where('resume_cat' , 'education')->get(); 
+        return view('backend.resume.my_education', compact('educations'));
+    }
 }
