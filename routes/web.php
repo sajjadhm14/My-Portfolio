@@ -39,8 +39,8 @@ Route::middleware('auth')->group(function(){
     // my experience routes
     Route::get('my-experience' ,  [ResumeController::class , 'myExperience'])->name('my.experience');
     Route::post('store-experience' ,  [ResumeController::class , 'storeExperience'])->name('store.experience');
-    // Route::get('edit-service/{id}' ,  [ResumeController::class , 'editService'])->name('edit.service');
-    // Route::post('update-service' ,  [ResumeController::class , 'updateService'])->name('update.service');
+    Route::get('edit-experience/{id}' ,  [ResumeController::class , 'editExperience']);
+    Route::post('update-experience' ,  [ResumeController::class , 'updateExperience'])->name('update.experience');
     // Route::get('delete-service/{id}' ,  [ResumeController::class , 'deleteService'])->name('delete.service');
 
 });
