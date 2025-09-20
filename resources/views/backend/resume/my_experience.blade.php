@@ -36,7 +36,7 @@
                             <td>{{$experience->to_year}}</td>
                             <td>
                                 <a href="#" id="{{$experience->id}}"  data-bs-toggle="modal" data-bs-target="#EditExperienceModal" type="button" class= "btn btn-inverse-light editExp" style="margin-right:10px ">Edit</a>
-                                <a href="{{route('delete.service', [$experience->id])}}" type="button" class= "btn btn-inverse-danger">Delete</a>
+                                <a href="{{route('delete.experience', [$experience->id])}}" type="button" class= "btn btn-inverse-danger">Delete</a>
                             </td>
                         </tr>
                         @endforeach
