@@ -39,4 +39,10 @@ class ResumeController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function editExperience($id)
+    {
+        $experience = Resume::find($id);
+        return response()->json($experience);
+    }
 }
