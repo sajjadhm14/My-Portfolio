@@ -3,7 +3,7 @@
          <div class="row">
             <div class="col-12 d-flex flex-wrap align-items-center">
                <div class="logo-box">
-                  <a href="index.html">
+                  <a href="#">
                      <img src="{{asset('frontend/assets/img/logo/logo.png')}}" alt="" />
                   </a>
                </div>
@@ -17,10 +17,8 @@
                   <nav>
                      <ul>
                         <li><a href="#services-section">Services</a></li>
-                        <li><a href="#works-section">Works</a></li>
                         <li><a href="#resume-section">Resume</a></li>
                         <li><a href="#skills-section">Skills</a></li>
-                        <li><a href="#testimonials-section">Testimonials</a></li>
                         <li><a href="#contact-section">Contact</a></li>
                      </ul>
                   </nav>
@@ -45,14 +43,14 @@
          <div class="row">
             <div class="col-12 d-flex flex-wrap align-items-center">
                <div class="logo-box">
-                  <a href="index.html">
+                  <a href="#">
                      <img src="{{asset('frontend/assets/img/logo/logo.png')}}" alt="" />
                   </a>
                </div>
 
                <div class="header-info-list d-none d-md-inline-block">
                   <ul class="ul-reset">
-                     <li><a href="mailto:mustaphajnamadi@gmail.com">mustaphajnamadi@gmail.com</a></li>
+                     <li><a href="mailto:mustaphajnamadi@gmail.com">sajjadhamidi499@gmail.com</a></li>
                   </ul>
                </div>
 
@@ -63,7 +61,6 @@
                         {{-- <li><a href="#works-section">Works</a></li> --}}
                         <li><a href="#resume-section">Resume</a></li>
                         <li><a href="#skills-section">Skills</a></li>
-                        <li><a href="#testimonials-section">Testimonials</a></li>
                         <li><a href="#contact-section">Contact</a></li>
                      </ul>
                   </nav>

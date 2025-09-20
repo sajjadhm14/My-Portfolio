@@ -228,7 +228,7 @@
       <!-- SKILLS SECTION END -->
 
       <!-- TESTIMONIAL SECTION START -->
-        @include('frontend.partials.testimonial')
+        {{-- @include('frontend.partials.testimonial') --}}
       <!-- TESTIMONIAL SECTION END -->
 
       <!-- BLOG SECTION STAR -->

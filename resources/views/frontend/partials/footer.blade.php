@@ -9,16 +9,14 @@
                   <nav>
                      <ul>
                         <li><a href="#services-section">Services</a></li>
-                        <li><a href="#works-section">Works</a></li>
                         <li><a href="#resume-section">Resume</a></li>
                         <li><a href="#skills-section">Skills</a></li>
-                        <li><a href="#testimonials-section">Testimonials</a></li>
                         <li><a href="#contact-section">Contact</a></li>
                      </ul>
                   </nav>
                </div>
                <div class="copy-text">
-                  <p>&copy; 2024 All rights reserved by <a href="#" target="_blank">Mjnamadi</a></p>
+                  <p>&copy; 2025 All rights reserved by <a href="#" target="_blank">Shamidi</a></p>
                </div>
             </div>
          </div>

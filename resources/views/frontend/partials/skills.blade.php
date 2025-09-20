@@ -18,20 +18,20 @@
                      <div class="skill-item wow fadeInUp" data-wow-delay=".3s">
                         <div class="skill-inner">
                            <div class="icon-box">
-                              <img src="{{asset('frontend/assets/img/icons/figma.svg')}}" alt="" />
+                              <img src="{{asset('frontend/assets/img/icons/php-svgrepo-com.svg')}}" alt="" />
                            </div>
                            <div class="number">92%</div>
                         </div>
-                        <p>Figma</p>
+                        <p>PHP</p>
                      </div>
                      <div class="skill-item wow fadeInUp" data-wow-delay=".4s">
                         <div class="skill-inner">
                            <div class="icon-box">
-                              <img src="{{asset('frontend/assets/img/icons/sketch.svg')}}" alt="" />
+                              <img src="{{asset('frontend/assets/img/icons/mysql-logo-svgrepo-com.svg')}}" alt="" />
                            </div>
                            <div class="number">80%</div>
                         </div>
-                        <p>Sketch</p>
+                        <p>MySQl</p>
                      </div>
                      <div class="skill-item wow fadeInUp" data-wow-delay=".5s">
                         <div class="skill-inner">
@@ -40,21 +40,21 @@
                            </div>
                            <div class="number">85%</div>
                         </div>
-                        <p>XD</p>
+                        <p>Laravel</p>
                      </div>
                      <div class="skill-item wow fadeInUp" data-wow-delay=".6s">
                         <div class="skill-inner">
                            <div class="icon-box">
-                              <img src="{{asset('frontend/assets/img/icons/wp.svg')}}" alt="" />
+                              <img src="{{asset('frontend/assets/img/icons/livewire.svg')}}" alt="" />
                            </div>
                            <div class="number">99%</div>
                         </div>
-                        <p>WordPess</p>
+                        <p>LiveWire</p>
                      </div>
                      <div class="skill-item wow fadeInUp" data-wow-delay=".7s">
                         <div class="skill-inner">
                            <div class="icon-box">
-                              <img src="{{asset('frontend/assets/img/icons/react.svg')}}" alt="" />
+                              <img src="{{asset('frontend/assets/img/icons/github-svgrepo-com.svg')}}" alt="" />
                            </div>
                            <div class="number">89%</div>
                         </div>
