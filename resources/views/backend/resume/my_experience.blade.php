@@ -59,7 +59,8 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form method="POST" action="{{route('store.experience')}} ">
+                        @csrf
                         <input type="hidden" name="resume_cat" value="experience">
                         <div class="mb-3">
                           <label for="title" class="form-label">Title</label>
