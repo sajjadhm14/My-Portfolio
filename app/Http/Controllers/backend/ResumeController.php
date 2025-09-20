@@ -45,4 +45,30 @@ class ResumeController extends Controller
         $experience = Resume::find($id);
         return response()->json($experience);
     }
+
+    public function updateExperience(Request $request)
+    {
+        $expData = [
+            'resume_title' => $request->resume_title,
+            'institution' => $request->institution,
+            'from_year' => $request->from_year,
+            'to_year' => $request->to_year,
+        ];
+        
+        Resume::findOrFail($request->exp_id)->update($expData);
+
+        if($request->resume_cat == 'experience'){
+            $notification = [
+                'message' => 'Experience Updated Successfully!',
+                'alert-type' => 'success',
+            ];
+        }else{
+             $notification = [
+                'message' => 'Education Updated Successfully!',
+                'alert-type' => 'success',
+            ];
+        }
+
+        return redirect()->back()->with($notification);
+    }
 }
