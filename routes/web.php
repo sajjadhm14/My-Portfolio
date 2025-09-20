@@ -42,6 +42,10 @@ Route::middleware('auth')->group(function(){
     Route::get('edit-experience/{id}' ,  [ResumeController::class , 'editExperience']);
     Route::post('update-experience' ,  [ResumeController::class , 'updateExperience'])->name('update.experience');
     Route::get('delete-service/{id}' ,  [ResumeController::class , 'deleteExperience'])->name('delete.experience');
+    // my experience routes end 
+
+    // my education route 
+        Route::get('my-education' ,  [ResumeController::class , 'myEducation'])->name('my.education');
 
 });
 
