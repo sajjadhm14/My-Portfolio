@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function(){
     Route::post('store-experience' ,  [ResumeController::class , 'storeExperience'])->name('store.experience');
     Route::get('edit-experience/{id}' ,  [ResumeController::class , 'editExperience']);
     Route::post('update-experience' ,  [ResumeController::class , 'updateExperience'])->name('update.experience');
-    // Route::get('delete-service/{id}' ,  [ResumeController::class , 'deleteService'])->name('delete.service');
+    Route::get('delete-service/{id}' ,  [ResumeController::class , 'deleteExperience'])->name('delete.experience');
 
 });
 

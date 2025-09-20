@@ -54,7 +54,7 @@ class ResumeController extends Controller
             'from_year' => $request->from_year,
             'to_year' => $request->to_year,
         ];
-        
+
         Resume::findOrFail($request->exp_id)->update($expData);
 
         if($request->resume_cat == 'experience'){
@@ -69,6 +69,15 @@ class ResumeController extends Controller
             ];
         }
 
+        return redirect()->back()->with($notification);
+    }
+    public function deleteExperience($id)
+    {
+        Resume::findOrFail($id)->delete();
+             $notification = [
+            'message' => 'Experience Deleted Successfully!',
+            'alert-type' => 'info',
+        ];
         return redirect()->back()->with($notification);
     }
 }
