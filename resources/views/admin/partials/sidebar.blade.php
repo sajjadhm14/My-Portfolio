@@ -56,6 +56,13 @@
           <span class="link-title">My Experience</span>
         </a>
       </li>
+      {{-- my education --}}
+      <li class="nav-item">
+        <a href="{{route('my.education')}}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">My Education</span>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>
