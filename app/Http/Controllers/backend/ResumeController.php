@@ -13,4 +13,30 @@ class ResumeController extends Controller
         $experiences =Resume::where('resume_cat' , 'experience')->get(); 
         return view('backend.resume.my_experience', compact('experiences'));
     }
+
+    public function storeExperience(Request $request)
+    {
+        Resume::create([
+            'resume_cat' => $request->resume_cat,
+            'resume_title' => $request->resume_title,
+            'institution' => $request->institution,
+            'from_year' => $request->from_year,
+            'to_year' => $request->to_year,
+        ]);
+
+
+        if($request->resume_cat == 'experience'){
+            $notification = [
+                'message' => 'Experience Added Successfully!',
+                'alert-type' => 'success',
+            ];
+        }else{
+             $notification = [
+                'message' => 'Education Added Successfully!',
+                'alert-type' => 'success',
+            ];
+        }
+
+        return redirect()->back()->with($notification);
+    }
 }
