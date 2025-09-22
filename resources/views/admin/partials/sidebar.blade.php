@@ -63,6 +63,24 @@
           <span class="link-title">My Education</span>
         </a>
       </li>
+      {{-- my skills --}}
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#myskill" role="button" aria-expanded="false" aria-controls="uiComponents">
+          <i class="link-icon" data-feather="feather"></i>
+          <span class="link-title">My Skills </span>
+          <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse" id="myskill">
+          <ul class="nav sub-menu">
+            <li class="nav-item">
+              <a href="{{route('add.skill')}}" class="nav-link">Add Skills</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('all.services')}}" class="nav-link">All Skills</a>
+            </li>
+          </ul>
+        </div>
+      </li>
     </ul>
   </div>
 </nav>
