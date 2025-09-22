@@ -23,7 +23,7 @@
 									</div>
 
                                     <div class="row mb-3">
-										<label class="col-sm-3 col-form-label" >Icon</label>
+										<label class="col-sm-3 col-form-label" required >Icon</label>
                                         <div class="col-sm-9">
 						                    <input class="form-control" name="icon" type="file" id="Image">
                                         </div>
