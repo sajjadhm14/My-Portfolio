@@ -9,6 +9,11 @@ class SkillsController extends Controller
 {
     public function addSkill()
     {
+        return view ('backend.skills.add_skill');
+    }
+
+    public function storeSkill()
+    {
         
     }
 }
