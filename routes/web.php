@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function(){
 
     // my skill route 
         Route::get('add-skill' ,  [SkillsController::class , 'addSkill'])->name('add.skill');
-        Route::post('store-skill' ,  [ResumeController::class , 'storeSkill'])->name('store.skill');
+        Route::post('store-skill' ,  [SkillsController::class , 'storeSkill'])->name('store.skill');
         // Route::get('edit-experience/{id}' ,  [ResumeController::class , 'editExperience']);
         // Route::post('update-experience' ,  [ResumeController::class , 'updateExperience'])->name('update.experience');
         // Route::get('delete-service/{id}' ,  [ResumeController::class , 'deleteExperience'])->name('delete.experience');
