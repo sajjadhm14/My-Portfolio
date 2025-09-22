@@ -4,6 +4,7 @@ use App\Http\Controllers\backend\AdminController;
 use App\Http\Controllers\backend\HeroController;
 use App\Http\Controllers\backend\ResumeController;
 use App\Http\Controllers\backend\ServicesController;
+use App\Http\Controllers\backend\SkillsController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +51,13 @@ Route::middleware('auth')->group(function(){
         Route::get('edit-experience/{id}' ,  [ResumeController::class , 'editExperience']);
         Route::post('update-experience' ,  [ResumeController::class , 'updateExperience'])->name('update.experience');
         Route::get('delete-service/{id}' ,  [ResumeController::class , 'deleteExperience'])->name('delete.experience');
+
+    // my skill route 
+        Route::get('add-skill' ,  [SkillsController::class , 'addSkill'])->name('add.skill');
+        // Route::post('store-experience' ,  [ResumeController::class , 'storeExperience'])->name('store.experience');
+        // Route::get('edit-experience/{id}' ,  [ResumeController::class , 'editExperience']);
+        // Route::post('update-experience' ,  [ResumeController::class , 'updateExperience'])->name('update.experience');
+        // Route::get('delete-service/{id}' ,  [ResumeController::class , 'deleteExperience'])->name('delete.experience');
 });
 
 
