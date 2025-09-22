@@ -76,7 +76,7 @@
               <a href="{{route('add.skill')}}" class="nav-link">Add Skills</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('all.services')}}" class="nav-link">All Skills</a>
+              <a href="{{route('all.skill')}}" class="nav-link">All Skills</a>
             </li>
           </ul>
         </div>
