@@ -17,7 +17,7 @@ class SkillsController extends Controller
     public function storeSkill(Request $request)
     {
         $file = $request->file('icon');
-        $iconName = 'tech_'.hexdec(uniqid()).$file->getClientOriginalExtension();
+        $iconName = 'tech_'.hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
         $file->move(public_path('uploads/skills/'),$iconName);
         $iconPath = 'uploads/skills/'.$iconName;
 
@@ -30,6 +30,17 @@ class SkillsController extends Controller
             'message' => 'Skill Added Successfully!',
             'alert-type' => 'success',
         ];
-        return redirect()->back()->with($notification);
+        return redirect()->route('all.skill')->with($notification);
+    }
+
+    public function AllSkills()
+    {
+        $allSkills = Skill::all();
+        return view('backend.skills.all_skills' , compact('allSkills'));
+    }
+    public function editSkill($id)
+    {
+        $skill = Skill::findOrFail($id);
+        return view('backend.skills.edit_skill' , compact('skill'));
     }
 }
