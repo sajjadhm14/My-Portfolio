@@ -13,7 +13,6 @@
             </div>
             @php
                 $skills = App\Models\Skill::all();
-                necessary
             @endphp
             <div class="row">
                <div class="col-md-12">
