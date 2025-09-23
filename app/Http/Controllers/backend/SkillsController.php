@@ -43,4 +43,50 @@ class SkillsController extends Controller
         $skill = Skill::findOrFail($id);
         return view('backend.skills.edit_skill' , compact('skill'));
     }
+    public function updateSkill(Request $request) 
+    {
+        if($request->hasFile('icon')){
+            $oldIcon = Skill::find($request->id)->icon;
+            unlink($oldIcon);
+             
+            $file = $request->file('icon');
+            $iconName = 'tech_'.hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('uploads/skills/'),$iconName);
+            $iconPath = 'uploads/skills/'.$iconName;  
+
+            $skill = Skill::find($request->id);
+            $skill->icon = $iconPath;
+            $skill->exp_level = $request->exp_level;
+            $skill->technology_name = $request->technology;
+            $skill->save();
+            $notification = [
+                'message' => 'Skill Updated With Icon Successfully!',
+                'alert-type' => 'success',
+            ];
+            return redirect()->route('all.skill')->with($notification);
+            }
+        
+        $skill = Skill::find($request->id);
+        $skill->exp_level = $request->exp_level;
+        $skill->technology_name = $request->technology;
+        $skill->save();
+        $notification = [
+            'message' => 'Skill Updated Without Icon Successfully!',
+            'alert-type' => 'success',
+        ];
+        return redirect()->route('all.skill')->with($notification);
+       
+    }
+
+    public function deleteSkill($id)
+    {
+        $oldIcon = Skill::find($id)->icon;
+        unlink($oldIcon);
+        Skill::find($id)->delete();
+        $notification = [
+            'message' => 'Skill Deleted Successfully!',
+            'alert-type' => 'success',
+        ];
+        return redirect()->back()->with($notification);
+    }
 }
