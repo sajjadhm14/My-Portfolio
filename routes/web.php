@@ -56,7 +56,8 @@ Route::middleware('auth')->group(function(){
         Route::get('add-skill' ,  [SkillsController::class , 'addSkill'])->name('add.skill');
         Route::post('store-skill' ,  [SkillsController::class , 'storeSkill'])->name('store.skill');
         Route::get('all-skill' ,  [SkillsController::class , 'allSkills'])->name('all.skill');
-        Route::post('edit-skill/{id}' ,  [SkillsController::class , 'editSkill'])->name('edit.skill');
+        Route::get('edit-skill/{id}' ,  [SkillsController::class , 'editSkill'])->name('edit.skill');
+        Route::post('update-skill' ,  [SkillsController::class , 'updateSkill'])->name('update.skill');
         Route::get('delete-skill/{id}' ,  [SkillsController::class , 'deleteSkill'])->name('delete.skill');
 });
 
