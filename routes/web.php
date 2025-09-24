@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\backend\AdminController;
-use App\Http\Controllers\backend\HeroController;
-use App\Http\Controllers\backend\ResumeController;
-use App\Http\Controllers\backend\ServicesController;
-use App\Http\Controllers\backend\SkillsController;
-use App\Http\Controllers\frontend\FrontendController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\backend\HeroController;
+use App\Http\Controllers\backend\AdminController;
+use App\Http\Controllers\backend\ResumeController;
+use App\Http\Controllers\backend\SkillsController;
+use App\Http\Controllers\backend\BlogPostController;
+use App\Http\Controllers\backend\ServicesController;
+use App\Http\Controllers\frontend\FrontendController;
 
 Route::get('/' , [FrontendController::class , 'homepage'])->name('home');
 
@@ -59,6 +60,15 @@ Route::middleware('auth')->group(function(){
         Route::get('edit-skill/{id}' ,  [SkillsController::class , 'editSkill'])->name('edit.skill');
         Route::post('update-skill' ,  [SkillsController::class , 'updateSkill'])->name('update.skill');
         Route::get('delete-skill/{id}' ,  [SkillsController::class , 'deleteSkill'])->name('delete.skill');
+
+    // blogs route 
+        Route::get('add-post' ,  [BlogPostController::class , 'addPost'])->name('add.post');
+        // Route::post('store-skill' ,  [BlogController::class , 'storeSkill'])->name('store.skill');
+        // Route::get('all-skill' ,  [BlogController::class , 'allSkills'])->name('all.skill');
+        // Route::get('edit-skill/{id}' ,  [BlogController::class , 'editSkill'])->name('edit.skill');
+        // Route::post('update-skill' ,  [BlogController::class , 'updateSkill'])->name('update.skill');
+        // Route::get('delete-skill/{id}' ,  [BlogController::class , 'deleteSkill'])->name('delete.skill');
+
 });
 
 
