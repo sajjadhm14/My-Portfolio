@@ -7,7 +7,7 @@
 
 								<h6 class="card-title">Add Blog Post</h6>
 
-								<form class="forms-sample" method = "POST" action="{{route('store.skill')}}" enctype="multipart/form-data">
+								<form class="forms-sample" method = "POST" action="{{route('store.post')}}" enctype="multipart/form-data">
                                     @csrf
 									<div class="row mb-3">
 										<label for="exampleInputUsername2" class="col-sm-3 col-form-label">Post Title</label>
@@ -24,7 +24,7 @@
 									<div class="row mb-3">
 										<label for="exampleInputEmail2" class="col-sm-3 col-form-label">Post Description</label>
 										<div class="col-sm-9">
-											<textarea type="text" class="form-control" id="tinymceExample" name="post_tags" rows="10"  autocomplete="off" ></textarea>
+											<textarea type="text" class="form-control" id="tinymceExample" name="post_description" rows="10"  autocomplete="off" ></textarea>
 										</div>
 									</div>
 
