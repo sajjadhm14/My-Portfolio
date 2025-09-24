@@ -91,7 +91,7 @@
         <div class="collapse" id="blog">
           <ul class="nav sub-menu">
             <li class="nav-item">
-              <a href="{{route('add.skill')}}" class="nav-link">Add Post</a>
+              <a href="{{route('add.post')}}" class="nav-link">Add Post</a>
             </li>
             <li class="nav-item">
               <a href="{{route('all.skill')}}" class="nav-link">All Post</a>
