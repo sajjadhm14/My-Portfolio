@@ -94,7 +94,7 @@
               <a href="{{route('add.post')}}" class="nav-link">Add Post</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('all.skill')}}" class="nav-link">All Post</a>
+              <a href="{{route('all.post')}}" class="nav-link">All Post</a>
             </li>
           </ul>
         </div>
