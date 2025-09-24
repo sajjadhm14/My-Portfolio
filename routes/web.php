@@ -64,10 +64,10 @@ Route::middleware('auth')->group(function(){
     // blogs route 
         Route::get('add-post' ,  [BlogPostController::class , 'addPost'])->name('add.post');
         Route::post('store-post' ,  [BlogPostController::class , 'storePost'])->name('store.post');
-        // Route::get('all-skill' ,  [BlogController::class , 'allSkills'])->name('all.skill');
-        // Route::get('edit-skill/{id}' ,  [BlogController::class , 'editSkill'])->name('edit.skill');
-        // Route::post('update-skill' ,  [BlogController::class , 'updateSkill'])->name('update.skill');
-        // Route::get('delete-skill/{id}' ,  [BlogController::class , 'deleteSkill'])->name('delete.skill');
+        Route::get('all-post' ,  [BlogPostController::class , 'allPost'])->name('all.post');
+        Route::get('edit-post/{id}' ,  [BlogPostController::class , 'editPost'])->name('edit.post');
+        Route::post('update-post' ,  [BlogPostController::class , 'updatePost'])->name('update.post');
+        Route::get('delete-post/{id}' ,  [BlogPostController::class , 'deletePost'])->name('delete.post');
 
 });
 
