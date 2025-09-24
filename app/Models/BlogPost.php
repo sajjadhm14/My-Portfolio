@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BlogPost extends Model
 {
@@ -14,4 +15,9 @@ class BlogPost extends Model
         'post_tags',
         'post_description',
     ];
+
+    public function author() : BelongsTo
+    {
+        return $this->belongsTo(User::class , 'user_id' , 'id');
+    }
 }
