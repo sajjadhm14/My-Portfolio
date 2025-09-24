@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function(){
 
     // blogs route 
         Route::get('add-post' ,  [BlogPostController::class , 'addPost'])->name('add.post');
-        // Route::post('store-skill' ,  [BlogController::class , 'storeSkill'])->name('store.skill');
+        Route::post('store-post' ,  [BlogPostController::class , 'storePost'])->name('store.post');
         // Route::get('all-skill' ,  [BlogController::class , 'allSkills'])->name('all.skill');
         // Route::get('edit-skill/{id}' ,  [BlogController::class , 'editSkill'])->name('edit.skill');
         // Route::post('update-skill' ,  [BlogController::class , 'updateSkill'])->name('update.skill');
