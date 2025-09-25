@@ -12,64 +12,42 @@
                </div>
             </div>
             <div class="row">
-               <div class="col-lg-4 col-md-6">
-                  <div class="blog-item wow fadeInUp" data-wow-delay=".5s">
-                     <div class="blog-thumb">
-                        <a href="blog-details.html">
-                           <img src="{{asset('frontend/assets/img/blog/1.jpg')}}" alt="" />
-                        </a>
-                        <a href="#" class="category">Tutorial</a>
-                     </div>
+
+               @php
+                   $posts = App\Models\BlogPost::latest()->limit(3)->get();
+               @endphp
+
+               @unless (count($posts)== 0)
+                  @foreach ($posts as $post)
+                     <div class="col-lg-4 col-md-6">
+                        <div class="blog-item wow fadeInUp" data-wow-delay=".5s">
+                           <div class="blog-thumb">
+                              <a href="/post/details/{{$post->post_slug}}">
+                                 <img src="{{asset($post->photo)}}" alt="" />
+                              </a>
+                              <a href="#" class="category">Tutorial</a>
+                           </div>
 
                      <div class="blog-content">
                         <div class="blog-meta">
                            <ul class="ul-reset">
-                              <li><i class="fa-light fa-calendar-days"></i> Oct 01, 2022</li>
+                              <li><i class="fa-light fa-calendar-days"></i> {{$post->created_at->format('D M ,Y')}}</li>
                               <li><i class="fa-light fa-comments"></i> <a href="#">Comment (0)</a></li>
                            </ul>
                         </div>
-                        <h3 class="blog-title"><a href="blog-details.html">top 10 ui ux designers</a></h3>
+                        <h3 class="blog-title"><a href="/post/details/{{$post->post_slug}}">{{Str::limit($post->post_title ,40)}}</a></h3>
                      </div>
                   </div>
                </div>
-               <div class="col-lg-4 col-md-6">
-                  <div class="blog-item wow fadeInUp" data-wow-delay=".6s">
-                     <div class="blog-thumb">
-                        <a href="blog-details.html">
-                           <img src="{{asset('frontend/assets/img/blog/2.jpg')}}" alt="" />
-                        </a>
-                        <a href="#" class="category">TIPS</a>
-                     </div>
-                     <div class="blog-content">
-                        <div class="blog-meta">
-                           <ul class="ul-reset">
-                              <li><i class="fa-light fa-calendar-days"></i> Nov 01, 2022</li>
-                              <li><i class="fa-light fa-comments"></i> <a href="#">Comment (0)</a></li>
-                           </ul>
-                        </div>
-                        <h3 class="blog-title"><a href="blog-details.html">App Development Guides</a></h3>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                  <div class="blog-item wow fadeInUp" data-wow-delay=".7s">
-                     <div class="blog-thumb">
-                        <a href="blog-details.html">
-                           <img src="{{asset('frontend/assets/img/blog/3.jpg')}}" alt="" />
-                        </a>
-                        <a href="#" class="category">FREEBIES</a>
-                     </div>
-                     <div class="blog-content">
-                        <div class="blog-meta">
-                           <ul class="ul-reset">
-                              <li><i class="fa-light fa-calendar-days"></i> Dec 01, 2022</li>
-                              <li><i class="fa-light fa-comments"></i> <a href="#">Comment (0)</a></li>
-                           </ul>
-                        </div>
-                        <h3 class="blog-title"><a href="blog-details.html">learn graphic design free</a></h3>
-                     </div>
-                  </div>
-               </div>
+                  @endforeach
+
+               @else 
+                  <p>No Post Found !!</p>                  
+               @endunless
+           
+
+        
+
             </div>
          </div>
       </section>
