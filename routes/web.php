@@ -7,12 +7,14 @@ use App\Http\Controllers\backend\AdminController;
 use App\Http\Controllers\backend\ResumeController;
 use App\Http\Controllers\backend\SkillsController;
 use App\Http\Controllers\backend\BlogPostController;
+use App\Http\Controllers\backend\CommentController;
 use App\Http\Controllers\backend\ServicesController;
 use App\Http\Controllers\frontend\FrontendController;
 
 Route::get('/' , [FrontendController::class , 'homepage'])->name('home');
 
 Route::get('/post/details/{slug}' , [FrontendController::class , 'blogDetails']);
+Route::post('store-comment' , [FrontendController::class , 'storeComment'])->name('store.comment');
 
 
 
@@ -73,6 +75,11 @@ Route::middleware('auth')->group(function(){
         Route::get('edit-post/{id}' ,  [BlogPostController::class , 'editPost'])->name('edit.post');
         Route::post('update-post' ,  [BlogPostController::class , 'updatePost'])->name('update.post');
         Route::get('delete-post/{id}' ,  [BlogPostController::class , 'deletePost'])->name('delete.post');
+
+    // comments route
+        Route::get('user-comment' ,  [CommentController::class , 'userComment'])->name('user.comments');
+        Route::post('comment-status-update' ,  [CommentController::class , 'commentStatusUpdate'])->name('comment.status.update');
+
 
 });
 
