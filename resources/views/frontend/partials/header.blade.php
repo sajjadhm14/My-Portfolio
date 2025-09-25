@@ -19,6 +19,7 @@
                         <li><a href="#services-section">Services</a></li>
                         <li><a href="#resume-section">Resume</a></li>
                         <li><a href="#skills-section">Skills</a></li>
+                        <li><a href="#blog-section">Blogs</a></li>
                         <li><a href="#contact-section">Contact</a></li>
                      </ul>
                   </nav>
@@ -58,9 +59,10 @@
                   <nav>
                      <ul>
                         <li><a href="#services-section">Services</a></li>
-                        {{-- <li><a href="#works-section">Works</a></li> --}}
+
                         <li><a href="#resume-section">Resume</a></li>
                         <li><a href="#skills-section">Skills</a></li>
+                        <li><a href="#blog-section">Blogs</a></li>
                         <li><a href="#contact-section">Contact</a></li>
                      </ul>
                   </nav>
