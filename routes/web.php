@@ -12,6 +12,11 @@ use App\Http\Controllers\frontend\FrontendController;
 
 Route::get('/' , [FrontendController::class , 'homepage'])->name('home');
 
+Route::get('/post/details/{slug}' , [FrontendController::class , 'blogDetails']);
+
+
+
+// backend route 
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard', function () {
         return view('admin.pages.index');
