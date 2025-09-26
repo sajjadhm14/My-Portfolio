@@ -100,6 +100,14 @@
         </div>
       </li>
 
+      {{-- comment section --}}
+       <li class="nav-item">
+        <a href="{{route('user.comments')}}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Comments</span>
+        </a>
+      </li>
+
     </ul>
   </div>
 </nav>
