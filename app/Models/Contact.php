@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Contact extends Model
 {
@@ -14,4 +15,9 @@ class Contact extends Model
         'service_id',
         'description',
     ];
+
+    public function service():BelongsTo
+    {
+        return $this->belongsTo(Service::class , 'service_id' , 'id');
+    }
 }
