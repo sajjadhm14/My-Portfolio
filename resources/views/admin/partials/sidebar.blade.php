@@ -108,6 +108,22 @@
         </a>
       </li>
 
+      {{-- contact section --}}
+
+      <li class="nav-item">
+        <a href="{{route('contact.message')}}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Contacts</span>
+        </a>
+      </li>
+      {{-- site settings --}}
+      <li class="nav-item">
+        <a href="{{route('site.settings')}}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Site Setting</span>
+        </a>
+      </li>
+
     </ul>
   </div>
 </nav>
