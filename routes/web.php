@@ -9,12 +9,14 @@ use App\Http\Controllers\backend\SkillsController;
 use App\Http\Controllers\backend\BlogPostController;
 use App\Http\Controllers\backend\CommentController;
 use App\Http\Controllers\backend\ServicesController;
+use App\Http\Controllers\backend\SiteSettingsController;
 use App\Http\Controllers\frontend\FrontendController;
 
 Route::get('/' , [FrontendController::class , 'homepage'])->name('home');
 
 Route::get('/post/details/{slug}' , [FrontendController::class , 'blogDetails']);
 Route::post('store-comment' , [FrontendController::class , 'storeComment'])->name('store.comment');
+Route::post('store-contact-message' , [FrontendController::class , 'storeContactMessage'])->name('store.contact.message');
 
 
 
@@ -79,6 +81,16 @@ Route::middleware('auth')->group(function(){
     // comments route
         Route::get('user-comment' ,  [CommentController::class , 'userComment'])->name('user.comments');
         Route::post('comment-status-update' ,  [CommentController::class , 'commentStatusUpdate'])->name('comment.status.update');
+
+    // contact route
+        Route::get('contact-message' ,  [CommentController::class , 'contactMessage'])->name('contact.message');
+        Route::get('delete-contact/{id}' ,  [CommentController::class , 'deleteContact'])->name('delete.contact');
+
+        // site setting route
+        Route::get('site-setting' ,  [SiteSettingsController::class , 'siteSetting'])->name('site.settings');
+        Route::post('update-site-settings' ,  [SiteSettingsController::class , 'updateSiteSettings'])->name('update.site.settings');
+
+
 
 
 });
