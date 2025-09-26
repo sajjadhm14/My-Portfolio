@@ -1,9 +1,12 @@
+@php
+    $siteSettings = App\Models\SiteSetting::findOrFail(1);
+@endphp
 <footer class="tj-footer-area">
       <div class="container">
          <div class="row">
             <div class="col-md-12 text-center">
                <div class="footer-logo-box">
-                  <a href="#"><img src="{{asset('frontend/assets/img/logo/logo.png')}}" alt="" /></a>
+                  <a href="#"><img src="{{asset($siteSettings->logo)}}" alt="" /></a>
                </div>
                <div class="footer-menu">
                   <nav>
@@ -16,7 +19,7 @@
                   </nav>
                </div>
                <div class="copy-text">
-                  <p>&copy; 2025 All rights reserved by <a href="/" target="_blank">Shamidi</a></p>
+                  <p>&copy; {{$siteSettings ->footer_note}}</p>
                </div>
             </div>
          </div>
