@@ -19,20 +19,22 @@
 
                @unless (count($posts)== 0)
                   @foreach ($posts as $post)
+                     @php
+                               $comments = App\Models\Comment::where('post_id' , $post->id)->where('status' , 1)->get();
+                     @endphp
                      <div class="col-lg-4 col-md-6">
                         <div class="blog-item wow fadeInUp" data-wow-delay=".5s">
                            <div class="blog-thumb">
                               <a href="/post/details/{{$post->post_slug}}">
                                  <img src="{{asset($post->photo)}}" alt="" />
                               </a>
-                              <a href="#" class="category">Tutorial</a>
                            </div>
 
                      <div class="blog-content">
                         <div class="blog-meta">
                            <ul class="ul-reset">
                               <li><i class="fa-light fa-calendar-days"></i> {{$post->created_at->format('D M ,Y')}}</li>
-                              <li><i class="fa-light fa-comments"></i> <a href="#">Comment (0)</a></li>
+                              <li><i class="fa-light fa-comments"></i> Comment ({{count($comments)}})</li>
                            </ul>
                         </div>
                         <h3 class="blog-title"><a href="/post/details/{{$post->post_slug}}">{{Str::limit($post->post_title ,40)}}</a></h3>
