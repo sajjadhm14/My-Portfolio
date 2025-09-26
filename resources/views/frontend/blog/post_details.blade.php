@@ -27,6 +27,8 @@
    <link rel="stylesheet" href="{{asset('frontend/assets/css/main.css')}}" />
    <link rel="stylesheet" href="{{asset('frontend/assets/css/light-mode.css')}}" />
    <link rel="stylesheet" href="{{asset('frontend/assets/css/responsive.css')}}" />
+
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 </head>
 
 <body>
@@ -85,6 +87,10 @@
       </section>
       <!-- END: Breadcrumb Area -->
 
+      @php
+          $comments = App\Models\Comment::where('post_id' , $post->id)->where('status' , 1)->get();
+      @endphp
+
          <section class="full-width tj-post-details__area">
          <div class="container">
             <div class="row justify-content-center">
@@ -94,14 +100,12 @@
                         <div class="tj-post__thumb">
                            <img src="{{asset($post->photo)}}" alt="" style="width:100%; height:350px; object-fit:cover; border-radius:8px;" />
 
-                           <a href="#" class="category">Tutorial</a>
                         </div>
 
                         <div class="tj-post__content">
                            <div class="tj-post__meta entry-meta">
-                              <span><i class="fa-light fa-user"></i> <a href="#">By {{$post->author->name}}</a></span>
+                              <span><i class="fa-light fa-user"></i> <a href="/">By {{$post->author->name}}</a></span>
                               <span><i class="fa-light fa-calendar-days"></i>{{$post->created_at->format('D M, Y')}}</span>
-                              <span><i class="fa-light fa-comments"></i><a href="#">Comments (3)</a></span>
                            </div>
                            <h3 class="tj-post__title entry-title">{{$post->post_title}}</h3>
 
@@ -110,209 +114,81 @@
                            </div>
                         </div>
                      </article>
-
+                     @php
+                         $tags = explode(',', $post->post_tags)
+                     @endphp
                      <!-- post tags & social share -->
                      <div class="single-post_tag_share">
                         <!-- post tags -->
                         <div class="tj_tag">
                            <h4 class="tag__title">Tags:</h4>
                            <div class="tagcloud">
-                              <a href="#" rel="tag">Business</a>
-                              <a href="#" rel="tag">Analysis</a>
-                              <a href="#" rel="tag">Technology</a>
-                              <a href="#" rel="tag">Design</a>
-                              <a href="#" rel="tag">Strategy</a>
-                              <a href="#" rel="tag">Tips</a>
-                           </div>
-                        </div>
-                        <div class="share_link">
-                           <a href="#" target="_blank" class="facebook" title="Share this on Facebook"><i
-                                 class="fa-brands fa-facebook-f"></i></a>
-                           <a href="#" class="twitter" title="Share this on Twitter" target="_blank"><i
-                                 class="fa-brands fa-x-twitter"></i></a>
-                           <a href="#" class="linkedin" title="Share this on Linkedin" target="_blank"><i
-                                 class="fa-brands fa-linkedin-in"></i></a>
-                           <a href="#" class="pinterest" title="Pin this Post" target="_blank"><i
-                                 class="fa-brands fa-pinterest-p"></i></a>
-                        </div>
-                     </div>
-
-                     <!-- post navigation -->
-                     <div class="single-post__navigation">
-                        <!-- previous post -->
-                        <div class="tj-navigation_post previous">
-                           <div class="tj-navigation-post_inner prev_post">
-                              <div class="navigation-post_img">
-                                 <a href="#"> <img src="{{asset('frontend/assets/img/blog/1.jpg')}}" alt="" /> </a>
-                              </div>
-                              <div class="tj-content">
-                                 <div class="post_pagination_nav"><i
-                                       class="fa-regular fa-angle-double-left"></i>previous</div>
-                                 <div class="post_pagination_title">
-                                    <h5 class="title">
-                                       <a href="#">Building a Real Estate Website Tips and Ideas</a>
-                                    </h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-
-                        <!-- next post -->
-
-                        <div class="tj-navigation_post next">
-                           <div class="tj-navigation-post_inner next_post">
-                              <div class="tj-content">
-                                 <div class="post_pagination_nav">Next<i class="fa-regular fa-angle-double-right"></i>
-                                 </div>
-                                 <div class="post_pagination_title">
-                                    <h5 class="title">
-                                       <a href="#">Architecture Is Not Based On Concrete And Steel</a>
-                                    </h5>
-                                 </div>
-                              </div>
-                              <div class="navigation-post_img">
-                                 <a href="#"> <img src="{{asset('frontend/assets/img/blog/2.jpg')}}" alt="" /> </a>
-                              </div>
+                             @foreach ($tags as $tag)
+                              <a href="#">{{$tag}}</a>
+                           @endforeach
                            </div>
                         </div>
                      </div>
+
+             
 
                      <!-- comments area -->
-                     <div class="tj-comments__container">
+                     <div class="tj-comments__container" id="comments-section">
                         <div class="tj-comments__wrap">
                            <div class="tj-comment__title">
-                              <h3>3 Comments</h3>
+                              <h3>{{count($comments)}} Comments</h3>
                            </div>
 
                            <div class="tj-latest__comments">
                               <ul>
-                                 <li class="tj__comment">
-                                    <div class="tj-comment__wrap">
-                                       <div class="comment__avatar">
-                                          <img alt="" src="{{asset('frontend/assets/img/blog/user-1.jpg')}}" />
-                                       </div>
-                                       <div class="comment__text">
-                                          <div class="avatar__name">
-                                             <h5><a href="#">Jane Doe</a></h5>
-                                             <span>January 3, 2024</span>
-                                          </div>
-                                          <p>
-                                             England dotted with a lush, green landscape, rustic villages and throbbing
-                                             with humanity. South Asian
-                                             country that has plenty to offer to visitors with its diverse wildlife.
-                                          </p>
-                                          <div class="comment__reply">
-                                             <a class="comment-reply-link" href="#">Reply</a>
-                                          </div>
-                                       </div>
-                                    </div>
+                                 @unless (count($comments) < 1)
+                                     @foreach ($comments as $comment)
+                                          <li class="tj__comment">
+                                             <div class="tj-comment__wrap">
+                                                <div class="comment__avatar">
+                                                   <img alt="" src="{{asset('uploads/no-img-avatar.png')}}" />
+                                                </div>
+                                                <div class="comment__text">
+                                                   <div class="avatar__name">
+                                                      <h5>{{$comment->user_name}}</h5>
+                                                      <span>{{$comment->created_at->format('M D, Y')}}</span>
+                                                   </div>
+                                                   <p>
+                                                      {{$comment->comment}}
+                                                   </p>
+                                                </div>
+                                             </div>
+                                          </li>
+                                     @endforeach
+                                 @else
+                                    <p>No Comment Found!! </p>
+                                 @endunless
+                                
 
-                                    <ul class="children">
-                                       <li class="tj__comment">
-                                          <div class="tj-comment__wrap">
-                                             <div class="comment__avatar">
-                                                <img alt="" src="{{asset('frontend/assets/img/blog/user-2.jpg')}}" />
-                                             </div>
-                                             <div class="comment__text">
-                                                <div class="avatar__name">
-                                                   <h5><a href="#"> Fred Bloggs</a></h5>
-                                                   <span>February 3, 2024</span>
-                                                </div>
-                                                <p>
-                                                   It is a long established fact that a reader will be distracted by the
-                                                   readable content of a page
-                                                   when looking at its layout. The point of using Lorem Ipsum is that it
-                                                   has a more-or-less normal
-                                                   distribution of letters, as opposed to using 'Content here making it
-                                                   look like readable English.
-                                                </p>
-                                                <div class="comment__reply">
-                                                   <a class="comment-reply-link" href="#">Reply</a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </li>
-
-                                       <li class="tj__comment">
-                                          <div class="tj-comment__wrap">
-                                             <div class="comment__avatar">
-                                                <img alt="" src="{{asset('frontend/assets/img/blog/user-3.jpg')}}" />
-                                             </div>
-                                             <div class="comment__text">
-                                                <div class="avatar__name">
-                                                   <h5><a href="#">Jane Bloggs</a></h5>
-                                                   <span>January 13, 2024</span>
-                                                </div>
-                                                <p>
-                                                   But I must explain to you how all this mistaken idea of denouncing
-                                                   pleasure and praising pain
-                                                   was born and I will give you a complete account
-                                                </p>
-                                                <div class="comment__reply">
-                                                   <a class="comment-reply-link" href="#">Reply</a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </li>
-                                    </ul>
-                                 </li>
-                                 <li class="tj__comment">
-                                    <div class="tj-comment__wrap">
-                                       <div class="comment__avatar">
-                                          <img alt="" src="{{asset('frontend/assets/img/blog/user-4.jpg')}}" />
-                                       </div>
-                                       <div class="comment__text">
-                                          <div class="avatar__name">
-                                             <h5><a href="#">Themedemos</a></h5>
-                                             <span>January 20, 2024</span>
-                                          </div>
-                                          <p>
-                                             There are many variations of passages of Lorem Ipsum available, but the
-                                             majority have suffered
-                                             alteration in some form, by injected humour, or randomised words which
-                                             don't look even slightly
-                                             believable. If you are going to use a passage you need to be sure there
-                                             isn't anything embarrassing
-                                             hidden in the middle of text. All the
-                                          </p>
-                                          <div class="comment__reply">
-                                             <a class="comment-reply-link" href="#">Reply</a>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </li>
                               </ul>
                            </div>
                         </div>
 
                         <div class="comment-respond">
                            <h3 class="comment-reply-title">
-                              <span class="tj-comment__title">Leave a Reply</span>
+                              <span class="tj-comment__title">Leave a Comment</span>
                            </h3>
 
-                           <form action="https://www.themejunction.net/html/gerold/demo/index.html" class="tj-post-comment__form">
-                              <p class="comment-notes">
-                                 <span id="email-notes">Your email address will not be published.</span>
-                                 <span class="required-field-message">Required fields are marked <span
-                                       class="required">*</span></span>
-                              </p>
+                           <form method="POST" action="{{route('store.comment')}}" class="tj-post-comment__form">
+                             @csrf
+                             <input type="hidden" name="post_id" value="{{$post->id}}">
 
                               <div class="row">
                                  <div class="col-md-6">
                                     <div class="form_group">
-                                       <input placeholder="Enter Name" id="author" name="author" type="text"
+                                       <input placeholder="Enter Name" id="author" name="user_name" type="text"
                                           aria-required="true" />
                                     </div>
                                  </div>
                                  <div class="col-md-6">
                                     <div class="form_group">
-                                       <input placeholder="Enter Email" id="email" name="email" type="email"
+                                       <input placeholder="Enter Email" id="email" name="user_email" type="email"
                                           aria-required="true" />
-                                    </div>
-                                 </div>
-                                 <div class="col-md-12">
-                                    <div class="form_group">
-                                       <input placeholder="Enter Website" id="url" name="url" type="url" />
                                     </div>
                                  </div>
                               </div>
@@ -327,12 +203,6 @@
                                  <div class="clearfix"></div>
                               </div>
 
-                              <p class="comment-form-cookies-consent">
-                                 <input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent"
-                                    type="checkbox" value="yes" />
-                                 <label for="wp-comment-cookies-consent">Save my name, email, and website in this
-                                    browser for the next time I comment.</label>
-                              </p>
                               <button class="tj-btn-primary submit" type="submit">Post Comment</button>
                            </form>
                         </div>
@@ -351,18 +221,7 @@
                         </div>
                      </div>
 
-                     <div class="sidebar_widget widget_categories wow fadeInUp" data-wow-delay=".3s">
-                        <div class="widget_title">
-                           <h3 class="title">Categories</h3>
-                        </div>
-
-                        <ul>
-                           <li><a href="#">Business</a> (4)</li>
-                           <li><a href="#">Analysis</a> (0)</li>
-                           <li><a href="#">Technology</a> (1)</li>
-                           <li><a href="#">Technology</a> (10)</li>
-                        </ul>
-                     </div>
+                    
 
                      <div class="sidebar_widget tj_recent_posts wow fadeInUp" data-wow-delay=".3s">
                         <div class="widget_title">
@@ -370,59 +229,34 @@
                         </div>
 
                         <ul>
+                          @foreach ($rPosts as $rPost)
+                          
+                           @php
+                               $comments = App\Models\Comment::where('post_id' , $rPost->id)->where('status' , 1)->get();
+                            @endphp
                            <li>
                               <div class="recent-post_thumb">
                                  <a href="blog-details.html">
-                                    <img src="{{asset('frontend/assets/img/blog/post-thumb-1.jpg')}}" alt="" />
+                                    <img src="{{asset($rPost->photo)}}" alt="" />
                                  </a>
                               </div>
 
                               <div class="recent-post_content">
                                  <div class="tj-post__meta entry-meta">
-                                    <span><i class="fa-light fa-calendar-days"></i>Jan 2024</span>
-                                    <span><i class="fa-light fa-comments"></i><a href="#"> (3)</a></span>
+                                    <span><i class="fa-light fa-calendar-days"></i>{{$rPost->created_at->format('M, Y')}}</span>
+                                    <span><i class="fa-light fa-comments"></i> ({{count($comments)}})</span>
                                  </div>
                                  <h4 class="recent-post_title">
-                                    <a href="blog-details.html">Definition and Principles of JIT Logistics</a>
+                                    <a href="/post/details/{{$rPost->post_slug}}">{{Str::limit($rPost->post_title , 30)}}</a>
                                  </h4>
                               </div>
-                           </li>
-                           <li>
-                              <div class="recent-post_thumb">
-                                 <a href="blog-details.html">
-                                    <img src="{{asset('frontend/assets/img/blog/post-thumb-2.jpg')}}" alt="" />
-                                 </a>
-                              </div>
-
-                              <div class="recent-post_content">
-                                 <div class="tj-post__meta entry-meta">
-                                    <span><i class="fa-light fa-calendar-days"></i>Jan 2024</span>
-                                    <span><i class="fa-light fa-comments"></i><a href="#"> (3)</a></span>
-                                 </div>
-                                 <h4 class="recent-post_title">
-                                    <a href="blog-details.html">Real-world Examples of Successful JIT Logistics</a>
-                                 </h4>
-                              </div>
-                           </li>
-                           <li>
-                              <div class="recent-post_thumb">
-                                 <a href="blog-details.html">
-                                    <img src="{{asset('assets/img/blog/post-thumb-3.jpg')}}" alt="" />
-                                 </a>
-                              </div>
-
-                              <div class="recent-post_content">
-                                 <div class="tj-post__meta entry-meta">
-                                    <span><i class="fa-light fa-calendar-days"></i>Jan 2024</span>
-                                    <span><i class="fa-light fa-comments"></i><a href="#"> (3)</a></span>
-                                 </div>
-                                 <h4 class="recent-post_title">
-                                    <a href="blog-details.html">Real-world Examples of Successful JIT Logistics</a>
-                                 </h4>
-                              </div>
-                           </li>
+                           </li>  
+                          @endforeach
+                           
                         </ul>
                      </div>
+
+                
 
                      <div class="sidebar_widget widget_tag_cloud wow fadeInUp" data-wow-delay=".3s">
                         <div class="widget_title">
@@ -430,11 +264,9 @@
                         </div>
 
                         <div class="tagcloud">
-                           <a href="#">Business</a>
-                           <a href="#">Analysis</a>
-                           <a href="#">Technology</a>
-                           <a href="#">Finance</a>
-                           <a href="#">Design</a>
+                           @foreach ($tags as $tag)
+                              <a href="#">{{$tag}}</a>
+                           @endforeach
                         </div>
                      </div>
                   </div>
@@ -476,5 +308,31 @@
    <script src="{{asset('frontend/assets/js/magnific-popup.js')}}"></script>
    <script src="{{asset('frontend/assets/js/validate.min.js')}}"></script>
    <script src="{{asset('frontend/assets/js/main.js')}}"></script>
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+   <script>
+   @if(Session::has('message'))
+   var type = "{{ Session::get('alert-type','info') }}"
+   switch(type){
+      case 'info':
+      toastr.info(" {{ Session::get('message') }} ");
+      break;
+
+      case 'success':
+      toastr.success(" {{ Session::get('message') }} ");
+      break;
+
+      case 'warning':
+      toastr.warning(" {{ Session::get('message') }} ");
+      break;
+
+      case 'error':
+      toastr.error(" {{ Session::get('message') }} ");
+      break; 
+   }
+   @endif 
+</script>
+
 </body>
 </html>
