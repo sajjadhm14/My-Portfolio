@@ -16,7 +16,7 @@
                   </nav>
                </div>
                <div class="copy-text">
-                  <p>&copy; 2025 All rights reserved by <a href="#" target="_blank">Shamidi</a></p>
+                  <p>&copy; 2025 All rights reserved by <a href="/" target="_blank">Shamidi</a></p>
                </div>
             </div>
          </div>
